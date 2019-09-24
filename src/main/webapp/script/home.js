@@ -25,7 +25,18 @@ $(function () {
                     // console.log(data.nodeId);
                     if (data.clickable) {
                         console.log(data.file_path);
-                        $('#pdf_viewer').attr("data", data.file_path);
+                        let split = data.file_path.split(".");
+                        let suffix = split[split.length-1]
+
+                        if (suffix == "pdf" || suffix == "PDF"){
+                            $('#pdf_viewer').attr("data", data.file_path);
+                            $('#pdf_viewer').show();
+                            $('#img_viewer').hide();
+                        }else{
+                            $('#img_viewer').attr("src", data.file_path);
+                            $('#pdf_viewer').hide();
+                            $('#img_viewer').show();
+                        }
                     }
                 }
             })

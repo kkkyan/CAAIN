@@ -38,7 +38,10 @@
             <a class="btn btn-primary" href="/vote" role="button" style="width:60px;margin-top:20px">进入</a>
         </div>
     </div>
-    <object id="pdf_viewer" data="/pdf" type="application/pdf" class="right_bar">
+
+    <img id="img_viewer" style="display: none;width: 75%;" src="#" alt="#"/>
+
+    <object id="pdf_viewer" data="/pdf" type="application/pdf" class="right_bar" style="display: none">
 
     </object>
 
@@ -54,6 +57,6 @@
 <script>
 
 </script>
-<
+
 <script src="../script/home.js"></script>
 </html>
