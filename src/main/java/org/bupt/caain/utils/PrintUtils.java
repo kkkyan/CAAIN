@@ -11,7 +11,9 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Comparator;
 
 public class PrintUtils {
     public String printVoteResultPerExpert(List<VotePerExpert> votesOfExpert, String filePath, String title, String expertNum) throws DocumentException {
@@ -60,6 +62,23 @@ public class PrintUtils {
         return "Done";
     }
 
+    public class entryComarator implements Comparator<Entry>{
+        public int compare(Entry e1,Entry e2){
+            if (e1.getLevel1() != e2.getLevel1()){
+                return e1.getLevel1()>e2.getLevel1()?-1:1;
+            }else{
+                if (e1.getLevel2() != e2.getLevel2()){
+                    return e1.getLevel2()>e2.getLevel2()?-1:1;
+                }
+                else{
+                    return e1.getLevel3()>e2.getLevel3()?-1:1;
+                }
+            }
+
+
+        }
+    }
+
     public String printVoteResult(List<Entry> entries, String filePath, String title) throws DocumentException {
         Document document = null;
         try {
@@ -95,6 +114,10 @@ public class PrintUtils {
         table.addCell(cell3);
         table.addCell(cell4);
         table.addCell(cell5);
+
+        // 按一二三等奖排序
+        Collections.sort(entries,new entryComarator());
+
 
         for (Entry entry : entries) {
             PdfPCell nameCell = new PdfPCell(new Paragraph(entry.getEntry_name(), cellFont));

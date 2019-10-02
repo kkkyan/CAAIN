@@ -26,7 +26,7 @@ $(function () {
                     if (data.clickable) {
                         console.log(data.file_path);
                         let split = data.file_path.split(".");
-                        let suffix = split[split.length-1]
+                        let suffix = split[split.length-1];
 
                         if (suffix == "pdf" || suffix == "PDF"){
                             $('#pdf_viewer').attr("data", data.file_path);

@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -104,8 +106,28 @@ public class AdminService {
         awardModel.update(award);
     }
 
+    // entry 从高到低排序
+    public class entryComarator implements Comparator<Entry> {
+        public int compare(Entry e1,Entry e2){
+            if (e1.getLevel1() != e2.getLevel1()){
+                return e1.getLevel1()>e2.getLevel1()?-1:1;
+            }else{
+                if (e1.getLevel2() != e2.getLevel2()){
+                    return e1.getLevel2()>e2.getLevel2()?-1:1;
+                }
+                else{
+                    return e1.getLevel3()>e2.getLevel3()?-1:1;
+                }
+            }
+        }
+    }
+
     public List<Entry> getVoteResult(int awardId) {
-        return this.entryModel.queryVotedEntries();
+        List<Entry> entries = this.entryModel.queryVotedEntries();
+        // 按一二三等奖排序
+        Collections.sort(entries,new entryComarator());
+
+        return entries;
 
     }
 }

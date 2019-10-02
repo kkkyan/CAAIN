@@ -39,11 +39,12 @@ $(function () {
                 let voteBody = $('#voteBody');
                 for(let i=0,len=entries.length;i<len;++i){
                     voteBody.append(`<tr>
-                        <td id="entryId">${i + 1}</td>
-                        <td id="entry_id">${entries[i]['entry_name']}</td>
-                        <td id="first_level">${entries[i]['level1']}</td>
-                        <td id="second_level">${entries[i]['level2']}</td>
-                        <td id="third_level">${entries[i]['level3']}</td>
+                        <td>${i + 1}</td>
+                        <td>${entries[i]['entry_name']}</td>
+                        <td>${entries[i]['level1']}</td>
+                        <td>${entries[i]['level2']}</td>
+                        <td>${entries[i]['level3']}</td>
+                        <td>${entries[i]['entry_prize']}</td>
                     </tr>`)
                 }
             }

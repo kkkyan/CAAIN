@@ -29,6 +29,7 @@
             <th class="text-center">一等奖</th>
             <th class="text-center">二等奖</th>
             <th class="text-center">三等奖</th>
+            <th class="text-center">获奖结果</th>
         </tr>
         </thead>
         <tbody id="voteBody">
